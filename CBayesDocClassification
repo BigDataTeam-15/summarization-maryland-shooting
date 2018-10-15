@@ -1,0 +1,56 @@
+Document classification with CBayes classification algorithm using mahout
+
+  >> export WORK_DIR=/user/cs4984cs5984f18_team15/15_Shooting_Maryland_big/
+
+Convert the manually labelled dataset into a < Text, Text > SequenceFile.
+  >> mahout seqdirectory -i ${WORK_DIR}/manually-labelled -o ${WORK_DIR}/manually-labelled-seq -ow
+  18/10/15 08:28:24 INFO driver.MahoutDriver: Program took 13057 ms (Minutes: 0.21761666666666668)
+
+Convert and preprocesses the dataset into a < Text, VectorWritable > SequenceFile containing term frequencies for each document.
+  >> mahout seq2sparse -i ${WORK_DIR}/manually-labelled-seq -o ${WORK_DIR}/manually-labelled-vectors -lnorm -nv -wt tfidf
+  18/10/15 08:32:55 INFO driver.MahoutDriver: Program took 153218 ms (Minutes: 2.5536333333333334)
+
+Split the preprocessed dataset into training and testing sets.
+  >> mahout split -i ${WORK_DIR}/manually-labelled-vectors/tfidf-vectors --trainingOutput ${WORK_DIR}/manually-labelled-train-vectors --testOutput ${WORK_DIR}/manually-labelled-test-vectors --randomSelectionPct 40 --overwrite --sequenceFiles -xm sequential
+  18/10/15 08:34:55 INFO utils.SplitInput: part-r-00000 has 5877 lines
+  18/10/15 08:34:55 INFO utils.SplitInput: part-r-00000 test split size is 2351 based on random selection percentage 40
+  18/10/15 08:34:55 INFO zlib.ZlibFactory: Successfully loaded & initialized native-zlib library
+  18/10/15 08:34:55 INFO compress.CodecPool: Got brand-new compressor [.deflate]
+  18/10/15 08:34:55 INFO compress.CodecPool: Got brand-new compressor [.deflate]
+  18/10/15 08:34:55 INFO utils.SplitInput: file: part-r-00000, input: 5877 train: 137, test: 95 starting at 0
+  18/10/15 08:34:55 INFO driver.MahoutDriver: Program took 1845 ms (Minutes: 0.03075)
+
+Train the classifier.
+  >> mahout trainnb -i ${WORK_DIR}/manually-labelled-train-vectors -el -o ${WORK_DIR}/manually-labelled-model -li ${WORK_DIR}/manually-labelled-labelindex -ow -c
+  18/10/15 08:37:58 INFO driver.MahoutDriver: Program took 43988 ms (Minutes: 0.7331333333333333)
+
+Test the classifier.
+  >> mahout testnb -i ${WORK_DIR}/manually-labelled-test-vectors -m ${WORK_DIR}/manually-labelled-model -l ${WORK_DIR}/manually-labelled-labelindex -ow -o ${WORK_DIR}/manually-labelled-testing -c
+  18/10/15 08:40:10 INFO test.TestNaiveBayesDriver: Complementary Results:
+=======================================================
+Summary
+-------------------------------------------------------
+Correctly Classified Instances          :         73       76.8421%
+Incorrectly Classified Instances        :         22       23.1579%
+Total Classified Instances              :         95
+
+=======================================================
+Confusion Matrix
+-------------------------------------------------------
+a       b       c       <--Classified as
+27      9       4        |  40          a     = irrelevant
+5       25      1        |  31          b     = newsroom_shooting
+3       0       21       |  24          c     = school_shooting
+
+=======================================================
+Statistics
+-------------------------------------------------------
+Kappa                                       0.5897
+Accuracy                                   76.8421%
+Reliability                                58.9113%
+Reliability (standard deviation)            0.4014
+
+  18/10/15 08:40:10 INFO driver.MahoutDriver: Program took 12123 ms (Minutes: 0.20205)
+
+
+source: https://mahout.apache.org/users/classification/twenty-newsgroups.html
