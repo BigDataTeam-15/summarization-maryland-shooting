@@ -1,4 +1,4 @@
-'''
+"""
 Generate articles-vectors (Steps : seqdirectory, seq2sparse) from the big unlabelled dataset and then split them into two folders (hacky way to get unlabbelled dataset to work with testnb)
 > mahout split -i ${WORK_DIR}/articles-vectors/tfidf-vectors --trainingOutput ${WORK_DIR}/articles-1-vectors --testOutput ${WORK_DIR}/articles-2-vectors --randomSelectionPct 50 --overwrite --sequenceFiles -xm sequential
 > mahout testnb -i ${WORK_DIR}/articles-1-vectors -m ${WORK_DIR}/school-labelled-model -l ${WORK_DIR}/school-labelled-labelindex -ow -o ${WORK_DIR}/school-labelled-testing-1 -c
@@ -13,7 +13,7 @@ Use seqdumper to get human readable data
 > mahout seqdumper -i ${WORK_DIR}/newsroom-labelled-testing-2/part-m-00000 > newsroom-classified-by-model-2.txt
 
 Run following python script to get articles classified into appropriate folders
-'''
+"""
 import subprocess
 
 event = "newsroom" # change event accordingly
