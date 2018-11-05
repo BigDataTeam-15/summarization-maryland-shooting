@@ -54,3 +54,18 @@ Reliability (standard deviation)            0.4014
 
 
 source: https://mahout.apache.org/users/classification/twenty-newsgroups.html
+
+To view the label indices
+ >> mahout seqdumper -i 15_Shooting_Maryland_big/manually-labelled-labelindex
+MAHOUT_LOCAL is not set; adding HADOOP_CONF_DIR to classpath.
+Running on hadoop, using /opt/cloudera/parcels/CDH-5.12.0-1.cdh5.12.0.p0.29/lib/hadoop/bin/hadoop and HADOOP_CONF_DIR=/etc/hadoop/conf
+MAHOUT-JOB: /opt/cloudera/parcels/CDH-5.12.0-1.cdh5.12.0.p0.29/lib/mahout/mahout-examples-0.9-cdh5.12.0-job.jar
+18/11/05 12:39:32 WARN driver.MahoutDriver: No seqdumper.props found on classpath, will use command-line arguments only
+18/11/05 12:39:32 INFO common.AbstractJob: Command line arguments: {--endPhase=[2147483647], --input=[15_Shooting_Maryland_big/manually-labelled-labelindex], --startPhase=[0], --tempDir=[temp]}
+Input Path: 15_Shooting_Maryland_big/manually-labelled-labelindex
+Key class: class org.apache.hadoop.io.Text Value Class: class org.apache.hadoop.io.IntWritable
+Key: irrelevant: Value: 0
+Key: newsroom_shooting: Value: 1
+Key: school_shooting: Value: 2
+Count: 3
+
