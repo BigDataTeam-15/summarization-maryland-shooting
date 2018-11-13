@@ -1,0 +1,49 @@
+K-means clustering using mahout
+
+After generating the vectors for the articles (Steps: seqdirectory, seq2sparse)
+>> mahout canopy ‐i 15_Shooting_Maryland_small/articles-vectors/tfidf-vectors ‐o 15_Shooting_Maryland_small/k-means/centroids ‐dm org.apache.mahout.common.distance.SquaredEuclideanDistanceMeasure ‐t1 500 ‐t2 250
+
+>> mahout clusterdump -dt sequencefile -d 15_Shooting_Maryland_small/articles-vectors/dictionary.file-0 -i 15_Shooting_Maryland_small/k-means/centroids/clusters-0-final > report_ppt.txt 
+
+>> mahout kmeans -i 15_Shooting_Maryland_small/articles-vectors/tfidf-vectors -c 15_Shooting_Maryland_small/k-means/centroids/clusters-0-final -o 15_Shooting_Maryland_small/k-means/centroids/clusters -dm org.apache.mahout.common.distance.SquaredEuclideanDistanceMeasure -cd 1.0 -x 20 -cl
+
+To view clusters formed at first step
+>> mahout clusterdump -dt sequencefile -d 15_Shooting_Maryland_small/articles-vectors/dictionary.file-0 -i 15_Shooting_Maryland_small/k-means/centroids/clusters/clusters-0 > sentDump1.txt
+
+For final clusters
+>> mahout clusterdump -dt sequencefile -d 15_Shooting_Maryland_small/articles-vectors/dictionary.file-0 -i 15_Shooting_Maryland_small/k-means/centroids/clusters/clusters-5-final > sentDump6.txt
+
+Output (sentDump.txt):
+  Top Terms: (for Irrelevant articles cluster)
+                news                                    =>  25.333333333333332
+                tweet                                   =>                25.0
+                twitter                                 =>                23.0
+                our                                     =>  22.333333333333332
+                id                                      =>                22.0
+                whatsapp                                =>                20.0
+                about                                   =>                15.0
+                you                                     =>                14.0
+                share                                   =>  12.666666666666666
+                stories                                 =>  12.666666666666666
+  Top Terms: (for school shooting articles cluster)
+                school                                  =>  16.945454545454545
+                said                                    =>  12.636363636363637
+                he                                      =>  11.618181818181819
+                shooting                                =>   8.236363636363636
+                from                                    =>  7.4363636363636365
+                after                                   =>   6.545454545454546
+                his                                     =>   6.490909090909091
+                high                                    =>  6.4363636363636365
+                rollins                                 =>  6.1454545454545455
+                were                                    =>   5.909090909090909
+  Top Terms: (for newsroom shooting articles cluster)
+                he                                      =>   2.274869109947644
+                said                                    =>  2.1910994764397906
+                shooting                                =>   2.007853403141361
+                capital                                 =>  1.9345549738219896
+                police                                  =>  1.9005235602094241
+                gazette                                 =>  1.8455497382198953
+                his                                     =>   1.630890052356021
+                maryland                                =>  1.5052356020942408
+                were                                    =>  1.4790575916230366
+                news                                    =>   1.442408376963351
