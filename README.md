@@ -29,5 +29,5 @@ The developers' manual can be found in the project report.
 
 To run codes use python filename.py 
 
-Filename correspons to the developers' manual in the project report. 
+Filename corresponds to the developers' manual in the project report at https://www.overleaf.com/read/fwjcdbdfwvmr
 (Be sure to change the path to the json file according to your own data path)
