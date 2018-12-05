@@ -23,8 +23,11 @@ This repo contains scripts for producing following Summaries
  
 This is a part of course project for Fall 2018 CS4984/5984: Big Data Text Summarization
 
+# How To Run
+
 The developers' manual can be found in the project report.
 
 To run codes use python filename.py 
-  filename correspons to the developers' manual in the project report. 
-  Be sure to change the path to the json file according to your own data path
+
+Filename correspons to the developers' manual in the project report. 
+(Be sure to change the path to the json file according to your own data path)
