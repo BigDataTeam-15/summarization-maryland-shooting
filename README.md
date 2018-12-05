@@ -35,9 +35,10 @@ This is a part of course project for Fall 2018 CS4984/5984: Big Data Text Summar
 
 # How To Run
 
-The developers' manual can be found in the project report.
+The developers' manual can be found in the project report at https://www.overleaf.com/read/fwjcdbdfwvmr
 
 To run codes use python filename.py 
 
-Filename corresponds to the developers' manual in the project report at https://www.overleaf.com/read/fwjcdbdfwvmr
+Filename corresponds to the developers' manual in the project report. 
+
 (Be sure to change the path to the json file according to your own data path)
