@@ -1,5 +1,15 @@
-# Summarization of Articles related to Shooting at Maryland
-This repo contains scripts for producing following Summaries 
+# Description 
+The repo contains scripts used to summarize articles related to Maryland Shooting
+
+# Tools Used
+- NLTK
+- SpaCy
+- Apache Mahout
+- Hadoop Cluster
+
+# 
+# Modules
+
 
  -  A set of most frequent important words
   
